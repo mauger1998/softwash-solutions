@@ -1,0 +1,31 @@
+---
+import Hero from '../components/Hero.astro'
+import Layout from '../layouts/Layout.astro'
+import { getSanity } from '../lib/api'
+import OurWork from '../components/sections/OurWork.astro'
+import Testimonials from '../components/sections/Testimonials.astro'
+import Cta from '../components/sections/Cta.astro'
+
+const returnedSections = await getSanity(`*[_type == 'home']`)
+
+const sections = returnedSections[0].sections
+
+console.log(sections)
+---
+
+<Layout>
+	{
+		sections.map((section) => {
+			switch (section._type) {
+				case 'hero':
+					return <Hero title={section.title} />
+				case 'ourWork':
+					return <OurWork title={section.title} projects={section.projects} />
+				case 'testimonials':
+					return <Testimonials title={section.title} testimonials={section.testimonials} />
+				case 'cta':
+					return <Cta images={section.images} title={section.title} />
+			}
+		})
+	}
+</Layout>

@@ -1,0 +1,51 @@
+---
+const { text, to, variant } = Astro.props
+---
+
+<a href={to}>
+	<button class={variant}>
+		{text}
+	</button>
+</a>
+
+<style lang="scss">
+	a {
+		button {
+			padding: 0.75rem 2rem;
+			cursor: pointer;
+			border-radius: 0.25rem;
+			background-color: transparent;
+
+			&.white {
+				border: 1px solid $white;
+				color: $white;
+				transition:
+					background-color 0.3s ease-in-out,
+					color 0.3s ease-in-out;
+
+				&:hover {
+					background-color: $white;
+					color: $black;
+					transition:
+						background-color 0.3s ease-in-out,
+						color 0.3s ease-in-out;
+				}
+			}
+			&.black {
+				border: 1px solid $black;
+				color: $black;
+				transition:
+					background-color 0.3s ease-in-out,
+					color 0.3s ease-in-out;
+
+				&:hover {
+					background-color: $black;
+					color: $white;
+					transition:
+						background-color 0.3s ease-in-out,
+						color 0.3s ease-in-out;
+				}
+			}
+		}
+	}
+</style>

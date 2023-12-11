@@ -1,0 +1,38 @@
+<nav>
+	<ul>
+		<a href="/">
+			<li>Home</li>
+		</a>
+		<a href="/gallery/">
+			<li>Gallery</li>
+		</a>
+		<a href="/services/">
+			<li>Services</li>
+		</a>
+		<a href="/contact/">
+			<li>Contact</li>
+		</a>
+	</ul>
+</nav>
+
+<style lang="scss">
+	nav {
+		padding: 0.5rem;
+		border: 0.5px solid $white;
+		border-radius: 0.25rem;
+		ul {
+			display: flex;
+			align-items: center;
+			gap: 1.5rem;
+
+			a {
+				li {
+					color: $white;
+				}
+			}
+		}
+		@media (max-width: 1024px) {
+			display: none;
+		}
+	}
+</style>

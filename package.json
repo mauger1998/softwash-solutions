@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "astro-eslint-parser": "^0.16.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-astro": "^0.30.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.2",
+    "sass": "^1.69.5"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "astro": "^4.0.3"
+  }
+}

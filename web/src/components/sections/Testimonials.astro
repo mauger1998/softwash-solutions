@@ -1,0 +1,76 @@
+---
+import Button from '../Button.astro'
+import TestimonialsGrid from '../grids/TestimonialsGrid.astro'
+const { title, testimonials } = Astro.props
+---
+
+<section class="testimonials-section">
+	<div class="wrapper">
+		<div class="top">
+			<div class="left">
+				<div class="title">
+					<h2>{title.title}</h2>
+					<p>{title.text}</p>
+					<Button text="Contact Us" to="/contact/" variant="black" />
+				</div>
+			</div>
+			<div class="right">
+				<img src="/images/town-left.png" alt="Guernsey Town" />
+				<img src="/images/town-right.png" alt="Guernsey Town" />
+			</div>
+		</div>
+		<TestimonialsGrid testimonials={testimonials} />
+	</div>
+
+	<style lang="scss">
+		.testimonials-section {
+			.wrapper {
+				.top {
+					display: flex;
+					align-items: center;
+					gap: 4rem;
+
+					.left {
+						width: 50%;
+
+						h2 {
+							max-width: 18ch;
+						}
+
+						p {
+							color: $black;
+							max-width: 40ch;
+							margin-block: 1.5rem 2rem;
+						}
+					}
+
+					.right {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						gap: 2rem;
+						width: 50%;
+
+						img {
+							width: 100%;
+							&:first-child {
+								margin-block-start: 8rem;
+							}
+						}
+					}
+				}
+				@media (max-width: 900px) {
+					.top {
+						flex-direction: column-reverse;
+						align-items: flex-start;
+						.right {
+							width: 100%;
+						}
+						.left {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	</style>
+</section>

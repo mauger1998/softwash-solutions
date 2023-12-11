@@ -1,0 +1,85 @@
+<div class="dropdown" data-dropdown>
+	<img data-dropdown-button src="/svg/menu-alt-svgrepo-com.svg" alt="Open Dropdown" />
+	<div class="dropdown-menu">
+		<img src="/svg/close-svgrepo-com.svg" alt="Close Dropdown" />
+		<nav>
+			<ul>
+				<a href="/">
+					<li>Home</li>
+				</a>
+				<a href="/gallery/">
+					<li>Gallery</li>
+				</a>
+				<a href="/services/">
+					<li>Services</li>
+				</a>
+				<a href="/contact/">
+					<li>Contact</li>
+				</a>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<script>
+	const dropdown = document.querySelector('[data-dropdown]')
+	const dropdownButton = document.querySelector('[data-dropdown-button]')
+	const dropdownMenu = document.querySelector('.dropdown-menu')
+	const dropdownMenuClose = document.querySelector('.dropdown-menu img')
+
+	dropdownButton.addEventListener('click', () => {
+		dropdownMenu.classList.add('active')
+	})
+
+	dropdownMenuClose.addEventListener('click', () => {
+		dropdownMenu.classList.remove('active')
+	})
+</script>
+
+<style lang="scss">
+	.dropdown {
+		display: none;
+
+		img {
+			width: 3rem;
+			cursor: pointer;
+		}
+		.dropdown-menu {
+			position: fixed;
+			background-color: $white;
+			padding: 2rem;
+			width: 100vw;
+			height: 100vh;
+			inset: 0;
+			transform: translateY(-4rem);
+			display: grid;
+			place-content: center;
+			opacity: 0;
+			pointer-events: none;
+			transition:
+				opacity 300ms ease,
+				transform 300ms ease;
+
+			&.active {
+				transform: translateY(0);
+				opacity: 1;
+				pointer-events: all;
+				transition:
+					opacity 300ms ease,
+					transform 300ms ease;
+			}
+
+			img {
+				position: absolute;
+				top: 2rem;
+				right: 2rem;
+				width: 2rem;
+				cursor: pointer;
+			}
+		}
+
+		@media (max-width: 1024px) {
+			display: block;
+		}
+	}
+</style>

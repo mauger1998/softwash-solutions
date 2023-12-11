@@ -1,0 +1,92 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+import Button from '../Button.astro'
+const { title, images } = Astro.props
+---
+
+<section class="cta-section">
+	<div class="wrapper">
+		<div class="grid-item">
+			<img src={urlForImage(images[0]).format('webp').url()} alt={images[0].alt} />
+		</div>
+		<div class="grid-item">
+			<h2>{title.title}</h2>
+			<p>{title.text}</p>
+			<Button text="Contact Us" to="/contact/" variant="black" />
+		</div>
+		<div class="grid-item">
+			<img src={urlForImage(images[1]).format('webp').url()} alt={images[1].alt} />
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.cta-section {
+		.wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 4rem;
+			place-content: center;
+
+			.grid-item {
+				&:nth-child(2) {
+					align-self: center;
+					h2 {
+						max-width: 14ch;
+					}
+					p {
+						color: $black;
+						max-width: 40ch;
+						margin-block: 1.5rem 2rem;
+					}
+				}
+				&:last-child {
+					grid-column: span 2;
+					max-width: 80%;
+					place-self: end;
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				gap: 2rem;
+
+				.grid-item {
+					&:last-child {
+						grid-column: span 2;
+						max-width: 100%;
+						place-self: end;
+					}
+				}
+			}
+		}
+		@media (max-width: 370px) {
+			.wrapper {
+				column-gap: 1rem;
+				grid-template-columns: 0.5fr 1fr;
+
+				.grid-item {
+					&:last-child {
+						grid-column: span 2;
+						max-width: 100%;
+						place-self: end;
+					}
+				}
+			}
+		}
+		@media (max-width: 310px) {
+			.wrapper {
+				column-gap: 1rem;
+				grid-template-columns: 1fr;
+
+				.grid-item {
+					&:last-child {
+						grid-column: span 1;
+						max-width: 100%;
+						place-self: end;
+					}
+				}
+			}
+		}
+	}
+</style>

@@ -1,0 +1,167 @@
+---
+import Button from './Button.astro'
+---
+
+<footer>
+	<div class="wrapper">
+		<div class="footer-top">
+			<h3>Contact us now for a free quote</h3>
+			<Button text="Contact Us" to="/contact/" variant="white" />
+		</div>
+		<div class="footer-bottom">
+			<div class="column">
+				<h4>About Softwash</h4>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan
+					porta lectus ridiculus in mattis. Netus sodales in volutpat ullamcorper amet adipiscing
+					fermentum.
+				</p>
+			</div>
+			<div class="column">
+				<nav>
+					<ul>
+						<a href="/">
+							<li>Home</li>
+						</a>
+						<a href="/gallery/">
+							<li>Gallery</li>
+						</a>
+						<a href="/services/">
+							<li>Services</li>
+						</a>
+						<a href="/contact/">
+							<li>Contact</li>
+						</a>
+					</ul>
+				</nav>
+			</div>
+			<div class="column">
+				<nav>
+					<ul>
+						<a href="/">
+							<li>Home</li>
+						</a>
+						<a href="/gallery/">
+							<li>Gallery</li>
+						</a>
+						<a href="/services/">
+							<li>Services</li>
+						</a>
+						<a href="/contact/">
+							<li>Contact</li>
+						</a>
+					</ul>
+				</nav>
+			</div>
+			<div class="column">
+				<nav>
+					<ul>
+						<a href="/">
+							<li>Home</li>
+						</a>
+						<a href="/gallery/">
+							<li>Gallery</li>
+						</a>
+						<a href="/services/">
+							<li>Services</li>
+						</a>
+						<a href="/contact/">
+							<li>Contact</li>
+						</a>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style lang="scss">
+	footer {
+		background-color: $black;
+		.wrapper {
+			.footer-top {
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-between;
+				padding-block-end: 4rem;
+
+				h3 {
+					color: $white;
+					max-width: 18ch;
+				}
+			}
+			.footer-bottom {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				padding-block-start: 4rem;
+				gap: 4rem;
+				align-items: end;
+				border-top: 0.5px solid $white;
+
+				.column {
+					h4 {
+						color: $white;
+					}
+					p {
+						color: $white;
+						margin-block-start: 1.5rem;
+						max-width: 32ch;
+					}
+					nav {
+						ul {
+							display: flex;
+							align-items: flex-start;
+							flex-direction: column;
+							gap: 1.5rem;
+							a {
+								li {
+									color: $white;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				.footer-bottom {
+					grid-template-columns: 1fr 1fr 1fr;
+					.column {
+						&:first-child {
+							grid-column: span 3;
+						}
+						&:not(:first-child) {
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				.footer-top {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1.5rem;
+				}
+				.footer-bottom {
+				}
+			}
+		}
+		@media (max-width: 350px) {
+			.wrapper {
+				.footer-bottom {
+					grid-template-columns: 1fr;
+
+					.column {
+						&:first-child {
+							grid-column: span 1;
+						}
+						&:not(:first-child) {
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

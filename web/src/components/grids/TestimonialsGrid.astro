@@ -1,0 +1,23 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+import Testimonial from '../cards/Testimonial.astro'
+const { testimonials } = Astro.props
+---
+
+<div class="grid">
+	{testimonials.map((testimonial) => <Testimonial testimonial={testimonial} />)}
+</div>
+
+<style lang="scss">
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+		margin-block: 8rem 0;
+
+		@media (max-width: 900px) {
+			grid-template-columns: 1fr 1fr;
+			row-gap: 4rem;
+		}
+	}
+</style>
