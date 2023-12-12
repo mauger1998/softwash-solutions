@@ -1,0 +1,106 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+import Button from '../Button.astro'
+const { title, images, cards } = Astro.props
+---
+
+<section class="three-card-image-section">
+	<div class="wrapper">
+		<div class="top">
+			<div class="left">
+				<h4>{title}</h4>
+			</div>
+			<div class="right">
+				<img src={urlForImage(images[0]).format('webp').url()} alt={images[0].alt} />
+			</div>
+		</div>
+		<img src={urlForImage(images[1]).format('webp').url()} alt={images[1].alt} />
+
+		<img src={urlForImage(images[2]).format('webp').url()} alt={images[2].alt} />
+		<div class="grid">
+			{
+				cards.map((card) => (
+					<div class="card">
+						<h3>{card.title}</h3>
+						<p>{card.text}</p>
+						<Button text="Contact us" variant="black" to="#contact" />
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.three-card-image-section {
+		.wrapper {
+			.top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+
+				.left {
+					width: 50%;
+					h4 {
+						color: $black;
+						max-width: 34ch;
+						margin-inline-start: auto;
+					}
+				}
+				.right {
+					width: clamp(150px, 20vw, 200px);
+				}
+			}
+			& > img {
+				&:nth-of-type(1) {
+					width: 200px;
+					display: block;
+					margin-inline: auto;
+					margin-block: 8rem;
+				}
+				&:nth-of-type(2) {
+					max-width: 460px;
+					width: 100%;
+					display: block;
+					margin-inline-start: auto;
+					margin-inline-end: -4rem;
+					margin-block: 4rem;
+				}
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 4rem;
+
+				.card {
+					h3 {
+						max-width: 11ch;
+					}
+					p {
+						color: $black;
+						margin-block: 1.5rem 2.5rem;
+						max-width: 32ch;
+					}
+				}
+			}
+		}
+		@media (max-width: 700px) {
+			.wrapper {
+				& > img {
+					&:nth-of-type(2) {
+						margin-inline-end: -2rem;
+					}
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				& > img {
+					&:nth-of-type(2) {
+						margin-inline-end: -1rem;
+					}
+				}
+			}
+		}
+	}
+</style>

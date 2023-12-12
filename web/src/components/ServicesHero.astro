@@ -1,0 +1,38 @@
+---
+const { title } = Astro.props
+---
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<h1>{title.title}</h1>
+			<p>
+				{title.text}
+			</p>
+		</div>
+	</div>
+</main>
+
+<style lang="scss">
+	main {
+		background-image: linear-gradient(to bottom, #030303ad, #03030300 25%),
+			linear-gradient(to top, #030303ad, #03030300 50%), url('/images/hero-image-services.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+
+		.wrapper {
+			padding-block: 24rem 4rem;
+
+			.title {
+				h1 {
+					max-width: 14ch;
+				}
+				p {
+					max-width: 50ch;
+					margin-block: 1.5rem 0;
+				}
+			}
+		}
+	}
+</style>

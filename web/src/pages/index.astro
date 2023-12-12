@@ -9,8 +9,6 @@ import Cta from '../components/sections/Cta.astro'
 const returnedSections = await getSanity(`*[_type == 'home']`)
 
 const sections = returnedSections[0].sections
-
-console.log(sections)
 ---
 
 <Layout>

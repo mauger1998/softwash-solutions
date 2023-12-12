@@ -1,0 +1,54 @@
+---
+import Services from '../../pages/services.astro'
+import Button from '../Button.astro'
+const { services, title } = Astro.props
+---
+
+<section class="three-card-section">
+	<div class="wrapper">
+		<div class="title"><h2>{title}</h2></div>
+		<div class="grid">
+			{
+				services.map((service) => (
+					<div class="card">
+						<h3>{service.title}</h3>
+						<p>{service.text}</p>
+						<Button text="Book Now" variant="black" to="/services/#contact" />
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.three-card-section {
+		.wrapper {
+			.title {
+				margin-block: 0 4rem;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				column-gap: 4rem;
+				margin-top: -4rem; // Negative margin equal to the desired row gap
+
+				.card {
+					display: grid;
+					grid-template-rows: subgrid;
+					grid-row: span 3;
+					margin-top: 4rem; // Top margin equal to the desired row gap
+
+					h3 {
+						// max-width: 12ch;
+					}
+					p {
+						color: $black;
+						margin-block: 1.5rem 2rem;
+						max-width: 32ch;
+					}
+				}
+			}
+		}
+	}
+</style>

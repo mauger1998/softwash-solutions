@@ -1,0 +1,35 @@
+---
+import Cta from '../components/sections/Cta.astro'
+import Layout from '../layouts/Layout.astro'
+import { getSanity } from '../lib/api'
+import ThreeCardGrid from '../components/grids/ThreeCardGrid.astro'
+import ThreeCardImage from '../components/sections/ThreeCardImage.astro'
+import ContactSection from '../components/sections/ContactSection.astro'
+import ServicesHero from '../components/ServicesHero.astro'
+
+const returnedSections = await getSanity(`*[_type == 'services']`)
+
+const sections = returnedSections[0].sections
+---
+
+<Layout>
+	{
+		sections.map((section) => {
+			switch (section._type) {
+				case 'hero':
+					return <ServicesHero title={section.title} />
+
+				case 'threeCard':
+					return <ThreeCardGrid title={section.title} services={section.cards} />
+				case 'threeCardImage':
+					return (
+						<ThreeCardImage cards={section.cards} images={section.images} title={section.title} />
+					)
+
+				case 'cta':
+					return <Cta images={section.images} title={section.title} />
+			}
+		})
+	}
+	<ContactSection />
+</Layout>

@@ -1,0 +1,108 @@
+---
+import Button from '../Button.astro'
+---
+
+<section class="contact-section" id="contact">
+	<div class="wrapper">
+		<div class="left">
+			<img src="/images/window-cleaned.png" alt="Clean, wet windows" />
+		</div>
+		<div class="right">
+			<h3>Contact Us</h3>
+			<form action="POST">
+				<fieldset>
+					<label for="name">Name:</label>
+					<input type="text" name="name" id="name" />
+				</fieldset>
+				<fieldset>
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email" />
+				</fieldset>
+				<fieldset>
+					<label for="phone">Phone:</label>
+					<input type="text" inputmode="numeric" name="phone" id="phone" />
+				</fieldset>
+				<fieldset>
+					<label for="message">Message:</label>
+					<textarea name="message" id="message" rows="6"></textarea>
+				</fieldset>
+				<Button type="submit" text="Send Message" variant="black" />
+			</form>
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.contact-section {
+		.wrapper {
+			display: flex;
+			align-items: stretch;
+			justify-content: center;
+			padding-inline: 0;
+			padding-block: 0;
+
+			.right {
+				width: 50%;
+				padding: 4rem;
+				border: 0.5px solid $black;
+
+				form {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1.5rem;
+					width: 100%;
+					margin-block: 2rem 0;
+					fieldset {
+						border: none;
+						width: 100%;
+
+						input,
+						textarea {
+							padding: 0.5rem;
+							width: 100%;
+							color: $black;
+							background-color: transparent;
+							border: none;
+							border-bottom: 0.5px solid $black;
+
+							&:focus {
+								border: 0.5px solid $black;
+								outline: none;
+							}
+						}
+					}
+				}
+			}
+			.left {
+				width: 50%;
+				padding: 4rem;
+				border: 0.5px solid $black;
+
+				img {
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+		}
+		@media (max-width: 700px) {
+			.wrapper {
+				.right,
+				.left {
+					padding-inline: 2rem;
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				flex-direction: column;
+				align-items: flex-start;
+				.right,
+				.left {
+					padding-inline: 1rem;
+					width: 100%;
+				}
+			}
+		}
+	}
+</style>
