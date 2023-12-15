@@ -1,5 +1,5 @@
 ---
-const { text, to, variant, ...props } = Astro.props
+const { text, to = '/contact/', variant, ...props } = Astro.props
 ---
 
 <a href={to}>
@@ -16,6 +16,37 @@ const { text, to, variant, ...props } = Astro.props
 			border-radius: 0.25rem;
 			background-color: transparent;
 
+			&.white {
+				border: 1px solid $white;
+				color: $white;
+				transition:
+					background-color 0.3s ease-in-out,
+					color 0.3s ease-in-out;
+
+				&:hover {
+					background-color: $white;
+					color: $black;
+					transition:
+						background-color 0.3s ease-in-out,
+						color 0.3s ease-in-out;
+				}
+			}
+			&.green {
+				border: 1px solid $green;
+				color: $white;
+				background-color: $green;
+				transition:
+					background-color 0.3s ease-in-out,
+					color 0.3s ease-in-out;
+
+				&:hover {
+					background-color: transparent;
+					color: $green;
+					transition:
+						background-color 0.3s ease-in-out,
+						color 0.3s ease-in-out;
+				}
+			}
 			&.white {
 				border: 1px solid $white;
 				color: $white;

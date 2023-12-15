@@ -21,56 +21,97 @@ const { title, testimonials } = Astro.props
 		</div>
 		<TestimonialsGrid testimonials={testimonials} />
 	</div>
+</section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
 
-	<style lang="scss">
-		.testimonials-section {
-			.wrapper {
-				.top {
-					display: flex;
-					align-items: center;
-					gap: 4rem;
+	gsap.to('.testimonials-section .right img', {
+		scrollTrigger: {
+			trigger: '.testimonials-section .right img',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		},
+		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+	gsap.to(
+		'.testimonials-section .left h2, .testimonials-section .left p, .testimonials-section .left a',
+		{
+			scrollTrigger: {
+				trigger: '.testimonials-section .left',
+				start: 'top 80%',
+				toggleActions: 'play none none reverse'
+			},
+			y: 0,
+			opacity: 1,
+			ease: 'power1.inOut',
+			stagger: 0.2
+		}
+	)
+</script>
+<style is:global lang="scss">
+	.testimonials-section {
+		.wrapper {
+			& > .top {
+				display: flex;
+				align-items: center;
+				gap: 4rem;
 
-					.left {
-						width: 50%;
+				.left {
+					width: 50%;
 
-						h2 {
-							max-width: 18ch;
-						}
-
-						p {
-							color: $black;
-							max-width: 40ch;
-							margin-block: 1.5rem 2rem;
-						}
+					h2 {
+						max-width: 18ch;
+						transform: translateY(4rem);
+						opacity: 0;
 					}
 
-					.right {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						gap: 2rem;
-						width: 50%;
+					p {
+						color: $black;
+						max-width: 40ch;
+						margin-block: 1.5rem 2rem;
+						transform: translateY(4rem);
 
-						img {
-							width: 100%;
-							&:first-child {
-								margin-block-start: 8rem;
-							}
-						}
+						opacity: 0;
+					}
+					a {
+						transform: translateY(4rem);
+						opacity: 0;
 					}
 				}
-				@media (max-width: 900px) {
-					.top {
-						flex-direction: column-reverse;
-						align-items: flex-start;
-						.right {
-							width: 100%;
-						}
-						.left {
-							width: 100%;
+
+				.right {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 2rem;
+					width: 50%;
+
+					img {
+						width: 100%;
+						clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+						transition: 300ms clip-path ease;
+
+						&:first-child {
+							margin-block-start: 8rem;
 						}
 					}
 				}
 			}
+			@media (max-width: 900px) {
+				& > .top {
+					flex-direction: column-reverse;
+					align-items: flex-start;
+					.right {
+						width: 100%;
+					}
+					.left {
+						width: 100%;
+					}
+				}
+			}
 		}
-	</style>
-</section>
+	}
+</style>

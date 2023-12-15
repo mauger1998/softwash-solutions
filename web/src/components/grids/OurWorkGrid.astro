@@ -16,19 +16,10 @@ const { projects } = Astro.props
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		margin-block: 4rem 0;
-		width: calc(100% + 8rem);
-		margin-inline: -4rem;
+		gap: 2rem;
 
 		@media (max-width: 900px) {
 			grid-template-columns: 1fr;
-		}
-		@media (max-width: 700px) {
-			width: calc(100% + 4rem);
-			margin-inline: -2rem;
-		}
-		@media (max-width: 500px) {
-			width: calc(100% + 2rem);
-			margin-inline: -1rem;
 		}
 	}
 </style>

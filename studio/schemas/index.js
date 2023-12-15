@@ -1,5 +1,7 @@
 import home from './documents/home'
 import services from './documents/services'
+import servicesPage from './documents/servicesPage'
+import card from './objects/card'
 import customImage from './objects/customImage'
 import project from './objects/project'
 import testimonial from './objects/testimonial'
@@ -10,6 +12,7 @@ import ourWork from './sections/ourWork'
 import threeCard from './sections/services/threeCard'
 import threeCardImage from './sections/services/threeCardImage'
 import testimonials from './sections/testimonials'
+import threeCards from './sections/threeCards'
 
 export const schemaTypes = [
   // Objects
@@ -17,6 +20,7 @@ export const schemaTypes = [
   customImage,
   project,
   testimonial,
+  card,
   // Sections
   hero,
   ourWork,
@@ -24,7 +28,9 @@ export const schemaTypes = [
   cta,
   threeCard,
   threeCardImage,
+  threeCards,
   // Pages
   home,
+  servicesPage,
   services,
 ]

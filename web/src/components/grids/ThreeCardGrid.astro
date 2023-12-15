@@ -20,7 +20,23 @@ const { services, title } = Astro.props
 		</div>
 	</div>
 </section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
 
+	gsap.to('.three-card-section .card', {
+		scrollTrigger: {
+			trigger: '.three-card-section .card',
+			start: 'top 80%',
+			toggleActions: 'play none none reset'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
 <style lang="scss">
 	.three-card-section {
 		.wrapper {
@@ -37,7 +53,9 @@ const { services, title } = Astro.props
 					display: grid;
 					grid-template-rows: subgrid;
 					grid-row: span 3;
-					margin-top: 4rem; // Top margin equal to the desired row gap
+					margin-top: 8rem; // Top margin equal to the desired row gap
+					transform: translateX(4rem);
+					opacity: 0;
 
 					h3 {
 						// max-width: 12ch;

@@ -7,7 +7,7 @@ import ThreeCardImage from '../components/sections/ThreeCardImage.astro'
 import ContactSection from '../components/sections/ContactSection.astro'
 import ServicesHero from '../components/ServicesHero.astro'
 
-const returnedSections = await getSanity(`*[_type == 'services']`)
+const returnedSections = await getSanity(`*[_type == 'servicesPage']`)
 
 const sections = returnedSections[0].sections
 ---

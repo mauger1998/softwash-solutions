@@ -1,42 +1,86 @@
 ---
 const { name, description, image } = Astro.props
 import { urlForImage } from '../../lib/urlForImage'
+
+const imageUrl = urlForImage(image).format('webp').url()
+
+console.log(imageUrl)
+
+const bgUrl = `url(${imageUrl})`
 ---
 
 <div class="project">
-	<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
 	<div class="content">
-		<h3>{name}</h3>
-		<p>{description}</p>
+		<div class="title">
+			<h3>{name}</h3>
+			<p>{description}</p>
+		</div>
+		<img src="/svg/link-circle.svg" alt="Link Circle Icon" />
 	</div>
 </div>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
 
-<style lang="scss">
+	gsap.to('.project', {
+		scrollTrigger: {
+			trigger: '.project',
+			start: 'top 80%',
+			toggleActions: 'play none none reset'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
+
+<style define:vars={{ bgUrl }} lang="scss">
 	.project {
-		border: 0.25px solid $black;
+		transform: translateX(4rem);
+		opacity: 0;
+		background-image: linear-gradient(to top, #030303, #03030300 50%), var(--bgUrl);
 		padding: 2rem;
+		padding-block: 12rem 1rem;
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		align-items: flex-end;
+		border-radius: 1rem;
+		&:nth-child(2) {
+			grid-row: span 2;
+		}
+		&:hover {
+			.content {
+				img {
+					scale: 1.1;
+					transition: 300ms scale ease;
+				}
+			}
+		}
 		.content {
+			width: 100%;
 			display: flex;
-			align-items: flex-start;
-			margin-block: 1rem 0;
+			align-items: flex-end;
 			justify-content: space-between;
-			gap: 2rem;
+			h3 {
+				color: $white;
+			}
 
 			p {
-				color: $black;
-				max-width: 32ch;
+				color: $white;
+				max-width: 40ch;
+			}
+
+			img {
+				width: 2rem;
+				cursor: pointer;
+				transition: 300ms scale ease;
 			}
 		}
 		@media (max-width: 700px) {
-			padding: 1rem;
-		}
-		@media (max-width: 370px) {
-			.content {
-				flex-direction: column;
-
-				align-items: flex-start;
-				gap: 1.5rem;
-			}
+			padding-inline: 1rem;
 		}
 	}
 </style>

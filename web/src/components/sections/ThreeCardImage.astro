@@ -30,6 +30,44 @@ const { title, images, cards } = Astro.props
 		</div>
 	</div>
 </section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.three-card-image-section img', {
+		scrollTrigger: {
+			trigger: '.three-card-image-section img',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+	gsap.to('.three-card-image-section h4', {
+		scrollTrigger: {
+			trigger: '.three-card-image-section h4',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+	gsap.to('.three-card-image-section .card', {
+		scrollTrigger: {
+			trigger: '.three-card-image-section .card',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
 
 <style lang="scss">
 	.three-card-image-section {
@@ -45,13 +83,21 @@ const { title, images, cards } = Astro.props
 						color: $black;
 						max-width: 34ch;
 						margin-inline-start: auto;
+						transform: translateY(4rem);
+						opacity: 0;
 					}
 				}
 				.right {
 					width: clamp(150px, 20vw, 200px);
+
+					img {
+						clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+					}
 				}
 			}
 			& > img {
+				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+
 				&:nth-of-type(1) {
 					width: 200px;
 					display: block;
@@ -73,6 +119,8 @@ const { title, images, cards } = Astro.props
 				gap: 4rem;
 
 				.card {
+					transform: translateX(-4rem);
+					opacity: 0;
 					h3 {
 						max-width: 11ch;
 					}

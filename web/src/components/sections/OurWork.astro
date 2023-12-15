@@ -1,12 +1,16 @@
 ---
 import OurWorkGrid from '../grids/OurWorkGrid.astro'
+import Tag from '../type/Tag.astro'
 const { title, projects } = Astro.props
 ---
 
 <section class="our-work-section">
 	<div class="wrapper">
 		<div class="title">
-			<h2>{title.title}</h2>
+			<div class="container">
+				<Tag />
+				<h2>{title.title}</h2>
+			</div>
 			<p>{title.text}</p>
 		</div>
 		<OurWorkGrid projects={projects} />
@@ -20,9 +24,14 @@ const { title, projects } = Astro.props
 				display: flex;
 				align-items: flex-end;
 				justify-content: space-between;
+				gap: 4rem;
+				h2 {
+					max-width: 24ch;
+				}
 				p {
 					color: $black;
 					max-width: 50ch;
+					width: 50%;
 				}
 			}
 		}
@@ -32,6 +41,10 @@ const { title, projects } = Astro.props
 					flex-direction: column;
 					align-items: flex-start;
 					gap: 1.5rem;
+
+					p {
+						width: 100%;
+					}
 				}
 			}
 		}

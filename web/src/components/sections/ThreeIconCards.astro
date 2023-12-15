@@ -1,0 +1,96 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+import Tag from '../type/Tag.astro'
+const { title, text, cards } = Astro.props
+---
+
+<div class="three-icon-cards-section">
+	<div class="wrapper">
+		<div class="title">
+			<Tag variant="centered" />
+			<h2>{title}</h2>
+			<p>{text}</p>
+		</div>
+		<div class="cards">
+			{
+				cards.map((card) => (
+					<div class="card">
+						<img src={urlForImage(card.icon).url()} alt={card.icon.alt} />
+						<div class="content">
+							<img src={urlForImage(card.icon).url()} alt={card.icon.alt} />
+							<h3>{card.title}</h3>
+							<p>{card.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style lang="scss">
+	.three-icon-cards-section {
+		.wrapper {
+			.title {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+
+				h2 {
+					max-width: 24ch;
+				}
+
+				p {
+					color: $black;
+					max-width: 55ch;
+					margin-block: 1.5rem 0;
+				}
+			}
+			.cards {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 2rem;
+				margin-block: 4rem 0;
+
+				.card {
+					position: relative;
+					padding: 2rem;
+					background-color: $white !important;
+					box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+					padding-block-start: 10rem;
+					z-index: 0;
+					overflow: hidden;
+					border-radius: 0.5rem;
+					& > img {
+						position: absolute;
+						width: 100%;
+						z-index: -1;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						opacity: 0.04;
+					}
+					.content {
+						& > img {
+							width: 2.5rem;
+							margin-block: 0 0.5rem;
+						}
+					}
+					p {
+						color: $black;
+						margin-block: 1rem 0;
+					}
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				.cards {
+					grid-template-columns: 1fr;
+				}
+			}
+		}
+	}
+</style>

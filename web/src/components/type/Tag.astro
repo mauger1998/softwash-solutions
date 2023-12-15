@@ -1,0 +1,41 @@
+---
+const { variant } = Astro.props
+---
+
+{
+	variant === 'centered' ? (
+		<div class="tag">
+			<hr />
+			<p>OPERATING SINCE 2003</p>
+			<hr />
+		</div>
+	) : (
+		<div class="tag">
+			<hr />
+			<p>OPERATING SINCE 2003</p>
+		</div>
+	)
+}
+
+<style lang="scss">
+	.tag {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0;
+		margin: 0;
+		margin-block: 0.5rem;
+		hr {
+			border: none;
+			height: 1.5px;
+			background-color: $green;
+			width: 50px;
+		}
+		p {
+			line-height: 1;
+			margin: 0;
+			color: $green;
+			font-family: 'Gramatika Medium';
+		}
+	}
+</style>

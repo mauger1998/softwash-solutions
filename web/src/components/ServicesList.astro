@@ -1,0 +1,154 @@
+---
+import Tag from './type/Tag.astro'
+import { urlForImage } from '../lib/urlForImage'
+const { services } = Astro.props
+---
+
+<section class="services-list-section">
+	<div class="wrapper">
+		<div class="title">
+			<div class="text">
+				<Tag />
+				<h2>SOME OF THE SERVICES WE OFFER</h2>
+			</div>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in
+				hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices
+				mauris.
+			</p>
+		</div>
+		<div class="services-list">
+			{
+				services.map((service, index) => (
+					<div class="service-item">
+						<div class="column">
+							<h3>0{index + 1}</h3>
+						</div>
+						<div class="column">
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+						</div>
+						<div class="column">
+							<img src={urlForImage(service.image).format('webp').url()} alt={service.image.alt} />
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.services-list-section {
+		.wrapper {
+			.title {
+				width: 100%;
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-between;
+
+				.text {
+					h2 {
+						max-width: 18ch;
+					}
+				}
+
+				p {
+					color: $black;
+					max-width: 50ch;
+				}
+			}
+			.services-list {
+				margin-block: 4rem 0;
+
+				.service-item {
+					display: grid;
+					grid-template-columns: 1fr 1fr 1fr 1fr;
+					gap: 2rem;
+					padding-block: 4rem;
+
+					&:not(:last-child) {
+						border-block-end: 0.5px solid $black;
+					}
+
+					.column {
+						h3 {
+							max-width: 12ch;
+						}
+						&:last-child {
+							grid-column: span 2;
+							img {
+								height: 150px;
+								object-fit: cover;
+								border-radius: 0.5rem;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				.title {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1.5rem;
+
+					p {
+						width: 100%;
+					}
+				}
+				.services-list {
+					.service-item {
+						grid-template-columns: 1fr 1fr 1fr;
+						.column {
+							&:last-child {
+								grid-row: 1 / span 2;
+								height: 100%;
+
+								img {
+									height: 200px !important;
+								}
+								grid-column: 2 / span 2;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 700px) {
+			.wrapper {
+				.services-list {
+					.service-item {
+						.column {
+							&:last-child {
+								img {
+									height: 150px !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				.services-list {
+					.service-item {
+						grid-template-columns: 1fr 1fr;
+						.column {
+							&:last-child {
+								grid-row: 1 / span 2;
+
+								grid-column: 1 / span 2;
+							}
+							img {
+								height: 150px !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

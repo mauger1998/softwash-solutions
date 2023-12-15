@@ -5,25 +5,44 @@ import { getSanity } from '../lib/api'
 import OurWork from '../components/sections/OurWork.astro'
 import Testimonials from '../components/sections/Testimonials.astro'
 import Cta from '../components/sections/Cta.astro'
+import ServicesList from '../components/ServicesList.astro'
+import ThreeIconCards from '../components/sections/ThreeIconCards.astro'
 
 const returnedSections = await getSanity(`*[_type == 'home']`)
-
+const services = await getSanity(`*[_type == 'services'] | order(orderRank asc)`)
 const sections = returnedSections[0].sections
 ---
 
 <Layout>
 	{
-		sections.map((section) => {
+		sections.map((section, index) => {
+			let components = []
+			if (index === 2) {
+				components.push(<ServicesList services={services} />)
+			}
 			switch (section._type) {
 				case 'hero':
-					return <Hero title={section.title} />
+					components.push(<Hero image={section.image} title={section.title} />)
+					break
 				case 'ourWork':
-					return <OurWork title={section.title} projects={section.projects} />
+					components.push(<OurWork title={section.title} projects={section.projects} />)
+					break
 				case 'testimonials':
-					return <Testimonials title={section.title} testimonials={section.testimonials} />
-				case 'cta':
-					return <Cta images={section.images} title={section.title} />
+					components.push(
+						<Testimonials title={section.title} testimonials={section.testimonials} />
+					)
+					break
+				case 'threeCards':
+					components.push(
+						<ThreeIconCards
+							cards={section.cards}
+							title={section.title.title}
+							text={section.title.text}
+						/>
+					)
+					break
 			}
+			return components
 		})
 	}
 </Layout>

@@ -11,11 +11,32 @@ const { testimonial } = Astro.props
 	<p>{testimonial.text}</p>
 </div>
 
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.testimonial', {
+		scrollTrigger: {
+			trigger: '.testimonial',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
+
 <style lang="scss">
 	.testimonial {
+		transform: translateX(4rem);
+		opacity: 0;
 		.top {
 			display: flex;
 			align-items: center;
+			justify-content: flex-start;
 			gap: 1rem;
 
 			img {

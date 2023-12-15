@@ -22,15 +22,36 @@ import Button from '../Button.astro'
 					<label for="phone">Phone:</label>
 					<input type="text" inputmode="numeric" name="phone" id="phone" />
 				</fieldset>
+
 				<fieldset>
 					<label for="message">Message:</label>
 					<textarea name="message" id="message" rows="6"></textarea>
 				</fieldset>
+				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+				<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+				<div class="g-recaptcha" data-sitekey="6LfpYTApAAAAAEa6kKJDBKrwcSGZLSbfpUa2n41m"></div>
 				<Button type="submit" text="Send Message" variant="black" />
 			</form>
 		</div>
 	</div>
 </section>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.contact-section .right, .contact-section .left', {
+		scrollTrigger: {
+			trigger: '.contact-section',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
 
 <style lang="scss">
 	.contact-section {
@@ -45,6 +66,8 @@ import Button from '../Button.astro'
 				width: 50%;
 				padding: 4rem;
 				border: 0.5px solid $black;
+				clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+				transition: 300ms clip-path ease;
 
 				form {
 					display: flex;
@@ -53,6 +76,7 @@ import Button from '../Button.astro'
 					gap: 1.5rem;
 					width: 100%;
 					margin-block: 2rem 0;
+
 					fieldset {
 						border: none;
 						width: 100%;
@@ -78,6 +102,8 @@ import Button from '../Button.astro'
 				width: 50%;
 				padding: 4rem;
 				border: 0.5px solid $black;
+				clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+				transition: 300ms clip-path ease;
 
 				img {
 					height: 100%;
