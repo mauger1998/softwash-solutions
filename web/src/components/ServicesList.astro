@@ -7,10 +7,8 @@ const { services } = Astro.props
 <section class="services-list-section">
 	<div class="wrapper">
 		<div class="title">
-			<div class="text">
-				<Tag />
-				<h2>SOME OF THE SERVICES WE OFFER</h2>
-			</div>
+			<Tag variant="centered" />
+			<h1>All Our Services</h1>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in
 				hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices
@@ -26,7 +24,7 @@ const { services } = Astro.props
 						</div>
 						<div class="column">
 							<h3>{service.title}</h3>
-							<p>{service.description}</p>
+							<p>{service.text}</p>
 						</div>
 						<div class="column">
 							<img src={urlForImage(service.image).format('webp').url()} alt={service.image.alt} />
@@ -44,18 +42,20 @@ const { services } = Astro.props
 			.title {
 				width: 100%;
 				display: flex;
-				align-items: flex-end;
-				justify-content: space-between;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
 
-				.text {
-					h2 {
-						max-width: 18ch;
-					}
+				h1 {
+					max-width: 18ch;
+					color: $black;
+					margin-block: 0.5rem 1.5rem;
 				}
 
 				p {
 					color: $black;
 					max-width: 50ch;
+					text-align: center;
 				}
 			}
 			.services-list {
@@ -63,7 +63,7 @@ const { services } = Astro.props
 
 				.service-item {
 					display: grid;
-					grid-template-columns: 1fr 1fr 1fr 1fr;
+					grid-template-columns: 0.5fr 1fr 1fr 1fr;
 					gap: 2rem;
 					padding-block: 4rem;
 
@@ -82,6 +82,10 @@ const { services } = Astro.props
 								object-fit: cover;
 								border-radius: 0.5rem;
 							}
+						}
+						p {
+							color: $black;
+							margin-block: 1rem 0;
 						}
 					}
 				}
@@ -107,7 +111,7 @@ const { services } = Astro.props
 								height: 100%;
 
 								img {
-									height: 200px !important;
+									height: 350px !important;
 								}
 								grid-column: 2 / span 2;
 							}
@@ -123,7 +127,7 @@ const { services } = Astro.props
 						.column {
 							&:last-child {
 								img {
-									height: 150px !important;
+									height: 300px !important;
 								}
 							}
 						}

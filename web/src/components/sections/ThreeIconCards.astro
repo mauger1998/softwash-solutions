@@ -27,8 +27,39 @@ const { title, text, cards } = Astro.props
 		</div>
 	</div>
 </div>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
 
-<style lang="scss">
+	gsap.to('.three-icon-cards-section .card', {
+		scrollTrigger: {
+			trigger: '.three-icon-cards-section .card',
+			start: 'top 80%',
+			toggleActions: 'play none none reset'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+
+	gsap.to(
+		'.three-icon-cards-section .title h2, .three-icon-cards-section .title > p, .three-icon-cards-section .title .tag',
+		{
+			scrollTrigger: {
+				trigger: '.three-icon-cards-section .title h2',
+				start: 'top 80%',
+				toggleActions: 'play none none reset'
+			},
+			y: 0,
+			opacity: 1,
+			ease: 'power1.inOut',
+			stagger: 0.2
+		}
+	)
+</script>
+<style is:global lang="scss">
 	.three-icon-cards-section {
 		.wrapper {
 			.title {
@@ -38,14 +69,23 @@ const { title, text, cards } = Astro.props
 				align-items: center;
 				justify-content: center;
 
-				h2 {
-					max-width: 24ch;
+				.tag {
+					transform: translateY(4rem);
+					opacity: 0;
 				}
 
-				p {
+				h2 {
+					max-width: 24ch;
+					transform: translateY(4rem);
+					opacity: 0;
+				}
+
+				& > p {
 					color: $black;
 					max-width: 55ch;
 					margin-block: 1.5rem 0;
+					transform: translateY(4rem);
+					opacity: 0;
 				}
 			}
 			.cards {
@@ -63,6 +103,8 @@ const { title, text, cards } = Astro.props
 					z-index: 0;
 					overflow: hidden;
 					border-radius: 0.5rem;
+					transform: translateX(4rem);
+					opacity: 0;
 					& > img {
 						position: absolute;
 						width: 100%;

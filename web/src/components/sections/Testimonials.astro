@@ -6,18 +6,10 @@ const { title, testimonials } = Astro.props
 
 <section class="testimonials-section">
 	<div class="wrapper">
-		<div class="top">
-			<div class="left">
-				<div class="title">
-					<h2>{title.title}</h2>
-					<p>{title.text}</p>
-					<Button text="Contact Us" to="/services/#contact" variant="black" />
-				</div>
-			</div>
-			<div class="right">
-				<img src="/images/town-left.png" alt="Guernsey Town" />
-				<img src="/images/town-right.png" alt="Guernsey Town" />
-			</div>
+		<div class="title">
+			<h2>{title.title}</h2>
+			<p>{title.text}</p>
+			<!-- <Button text="Contact Us" to="/services/#contact" variant="black" /> -->
 		</div>
 		<TestimonialsGrid testimonials={testimonials} />
 	</div>
@@ -27,79 +19,47 @@ const { title, testimonials } = Astro.props
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
 	gsap.registerPlugin(ScrollTrigger)
 
-	gsap.to('.testimonials-section .right img', {
+	gsap.to('.testimonials-section  h2, .testimonials-section  p, .testimonials-section  a', {
 		scrollTrigger: {
-			trigger: '.testimonials-section .right img',
-			start: 'top 90%',
+			trigger: '.testimonials-section ',
+			start: 'top 80%',
 			toggleActions: 'play none none reverse'
 		},
-		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+		y: 0,
+		opacity: 1,
 		ease: 'power1.inOut',
 		stagger: 0.2
 	})
-	gsap.to(
-		'.testimonials-section .left h2, .testimonials-section .left p, .testimonials-section .left a',
-		{
-			scrollTrigger: {
-				trigger: '.testimonials-section .left',
-				start: 'top 80%',
-				toggleActions: 'play none none reverse'
-			},
-			y: 0,
-			opacity: 1,
-			ease: 'power1.inOut',
-			stagger: 0.2
-		}
-	)
 </script>
 <style is:global lang="scss">
 	.testimonials-section {
 		.wrapper {
-			& > .top {
+			.title {
 				display: flex;
 				align-items: center;
-				gap: 4rem;
+				flex-direction: column;
 
-				.left {
-					width: 50%;
-
-					h2 {
-						max-width: 18ch;
-						transform: translateY(4rem);
-						opacity: 0;
-					}
-
-					p {
-						color: $black;
-						max-width: 40ch;
-						margin-block: 1.5rem 2rem;
-						transform: translateY(4rem);
-
-						opacity: 0;
-					}
-					a {
-						transform: translateY(4rem);
-						opacity: 0;
-					}
+				h2 {
+					max-width: 24ch;
+					transform: translateY(4rem);
+					opacity: 0;
+					text-align: center;
 				}
 
-				.right {
-					display: grid;
-					grid-template-columns: 1fr 1fr;
-					gap: 2rem;
-					width: 50%;
-
-					img {
-						width: 100%;
-						clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-						transition: 300ms clip-path ease;
-
-						&:first-child {
-							margin-block-start: 8rem;
-						}
-					}
+				p {
+					color: $black;
+					max-width: 50ch;
+					margin-block: 1.5rem 2rem;
+					transform: translateY(4rem);
+					text-align: center;
+					opacity: 0;
+				}
+				a {
+					transform: translateY(4rem);
+					opacity: 0;
 				}
 			}
+
 			@media (max-width: 900px) {
 				& > .top {
 					flex-direction: column-reverse;

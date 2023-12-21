@@ -7,9 +7,9 @@ import Testimonials from '../components/sections/Testimonials.astro'
 import Cta from '../components/sections/Cta.astro'
 import ServicesList from '../components/ServicesList.astro'
 import ThreeIconCards from '../components/sections/ThreeIconCards.astro'
+import ContactSection from '../components/sections/ContactSection.astro'
 
 const returnedSections = await getSanity(`*[_type == 'home']`)
-const services = await getSanity(`*[_type == 'services'] | order(orderRank asc)`)
 const sections = returnedSections[0].sections
 ---
 
@@ -17,12 +17,10 @@ const sections = returnedSections[0].sections
 	{
 		sections.map((section, index) => {
 			let components = []
-			if (index === 2) {
-				components.push(<ServicesList services={services} />)
-			}
+
 			switch (section._type) {
 				case 'hero':
-					components.push(<Hero image={section.image} title={section.title} />)
+					components.push(<Hero tagColor="white" image={section.image} title={section.title} />)
 					break
 				case 'ourWork':
 					components.push(<OurWork title={section.title} projects={section.projects} />)
@@ -45,4 +43,5 @@ const sections = returnedSections[0].sections
 			return components
 		})
 	}
+	<ContactSection />
 </Layout>
