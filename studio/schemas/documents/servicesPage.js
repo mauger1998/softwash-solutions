@@ -14,7 +14,7 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{type: 'hero'}, {type: 'threeCard'}, {type: 'threeCardImage'}, {type: 'cta'}],
+      of: [{type: 'hero'}, {type: 'cta'}],
     },
   ],
 }

@@ -20,6 +20,7 @@ export default {
         {type: 'testimonials'},
         {type: 'cta'},
         {type: 'threeCards'},
+        {type: 'basic'},
       ],
     },
   ],

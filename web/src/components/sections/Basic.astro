@@ -1,0 +1,49 @@
+---
+import Button from '../Button.astro'
+import Tag from '../type/Tag.astro'
+const { title } = Astro.props
+---
+
+<section class="basic-section">
+	<div class="wrapper">
+		<div class="left">
+			<Tag color="green" />
+		</div>
+		<div class="right">
+			<h2>{title}</h2>
+			<Button variant="green" text="Find out why" />
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.basic-section {
+		.wrapper {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+
+			.left {
+				width: 50%;
+			}
+			.right {
+				width: 50%;
+
+				h2 {
+					max-width: 18ch;
+					margin-block: 0rem 1.5rem;
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				flex-direction: column;
+				padding-block-end: 0;
+				.left,
+				.right {
+					width: 100%;
+				}
+			}
+		}
+	}
+</style>

@@ -1,0 +1,108 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+import Button from '../Button.astro'
+import Tag from '../type/Tag.astro'
+const { services } = Astro.props
+
+const topServices = services.slice(0, 4)
+
+let allBgUrls = []
+
+topServices.forEach((service) => {
+	allBgUrls.push(`url(${urlForImage(service.image).format('webp').url()})`)
+})
+
+console.log(allBgUrls)
+---
+
+<section class="top-services">
+	<div class="wrapper">
+		<div class="title">
+			<Tag variant="centered" color="black" />
+			<h2>Our Top Services</h2>
+		</div>
+		<div class="services">
+			{
+				topServices.map((service, index) => (
+					<div class="mask">
+						<div class="card">
+							<div
+								class="background"
+								style={{
+									backgroundImage: `linear-gradient(#0303037c, #0303037c),${allBgUrls[index]}`
+								}}
+							/>
+							<div class="title">
+								<h4>{service.title}</h4>
+								<Button text="View all services" variant="white" />
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.top-services {
+		.wrapper {
+			.title {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-block: 0 4rem;
+			}
+			.services {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+				.mask {
+					overflow: hidden;
+
+					.card {
+						padding: 18rem 2rem 2rem 2rem;
+						display: flex;
+						align-items: flex-end;
+						position: relative;
+						overflow: hidden;
+						.background {
+							position: absolute;
+							top: 0;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							background-repeat: no-repeat;
+							background-size: cover;
+							z-index: -1;
+							transition: transform 0.3s ease-in-out;
+						}
+						&:hover {
+							.background {
+								transform: scale(1.05);
+							}
+						}
+
+						.title {
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							gap: 1rem;
+							align-self: flex-end;
+							margin: 0;
+							transition: transform 0.3s ease-in-out;
+
+							h4 {
+								color: $white;
+								max-width: 12ch;
+							}
+							p {
+								color: $white;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

@@ -6,11 +6,10 @@ import customImage from './objects/customImage'
 import project from './objects/project'
 import testimonial from './objects/testimonial'
 import title from './objects/title'
+import basic from './sections/basic'
 import cta from './sections/cta'
 import hero from './sections/hero'
 import ourWork from './sections/ourWork'
-import threeCard from './sections/services/threeCard'
-import threeCardImage from './sections/services/threeCardImage'
 import testimonials from './sections/testimonials'
 import threeCards from './sections/threeCards'
 
@@ -26,9 +25,8 @@ export const schemaTypes = [
   ourWork,
   testimonials,
   cta,
-  threeCard,
-  threeCardImage,
   threeCards,
+  basic,
   // Pages
   home,
   servicesPage,

@@ -10,16 +10,13 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 <main>
 	<div class="wrapper">
 		<div class="title">
-			<Tag color={tagColor} />
+			<Tag variant="centered" color={tagColor} />
 			<h1>
 				{title.title}
 			</h1>
-			<div class="buttons">
-				<p>
-					{title.text}
-				</p>
-				<Button to="/contact/" text="Contact us" variant="green" />
-			</div>
+			<p>
+				{title.text}
+			</p>
 		</div>
 	</div>
 </main>
@@ -28,20 +25,23 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 	main {
 		background-image: linear-gradient(#03030370, #03030370), var(--backgroundImageUrl);
 		background-size: cover;
+		background-position: center;
 
 		.wrapper {
 			padding-block: 28rem 4rem;
 
 			.title {
-				.buttons {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				h1 {
+					max-width: 24ch;
+					text-align: center;
+				}
+				p {
+					max-width: 40ch;
+					text-align: center;
 					margin-block: 1.5rem 0;
-					display: flex;
-					align-items: flex-end;
-					gap: 2.5rem;
-
-					p {
-						max-width: 40ch;
-					}
 				}
 			}
 		}

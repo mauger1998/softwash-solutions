@@ -4,31 +4,30 @@ export default {
   type: 'object',
   fields: [
     {
+      name: 'tag',
+      title: 'Tag',
+      type: 'string',
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'title',
     },
     {
-      name: 'images',
-      title: 'Images',
-      type: 'array',
-      of: [
-        {
-          type: 'customImage',
-        },
-      ],
-      validation: (Rule) => Rule.max(2),
+      name: 'image',
+      title: 'Image',
+      type: 'customImage',
     },
   ],
   preview: {
     select: {
       title: 'title.title',
-      media: 'images',
+      media: 'image',
     },
     prepare({title, media}) {
       return {
         title: title,
-        media: media[0],
+        media: media,
       }
     },
   },

@@ -5,7 +5,9 @@ const { testimonial } = Astro.props
 
 <div class="testimonial">
 	<div class="top">
-		<img src={urlForImage(testimonial.image).format('webp').url()} alt={testimonial.image.alt} />
+		<div class="mask">
+			<img src={urlForImage(testimonial.image).format('webp').url()} alt={testimonial.image.alt} />
+		</div>
 		<h4>{testimonial.name}</h4>
 	</div>
 	<p>{testimonial.text}</p>
@@ -38,9 +40,20 @@ const { testimonial } = Astro.props
 			align-items: center;
 			justify-content: flex-start;
 			gap: 1rem;
-
-			img {
+			.mask {
+				overflow: hidden;
 				max-width: 30%;
+				display: flex;
+
+				&:hover {
+					img {
+						scale: 1.05;
+						transition: 300ms scale ease;
+					}
+				}
+				img {
+					transition: 300ms scale ease;
+				}
 			}
 
 			h4 {
