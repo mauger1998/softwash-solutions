@@ -2,16 +2,25 @@
 import Navigation from './Navigation.astro'
 import Dropdown from './Dropdown.astro'
 import Button from './Button.astro'
+const { variant } = Astro.props
 ---
 
 <header>
 	<div class="header-wrapper">
 		<a href="/" class="logo">
-			<img src="/svg/softwash-logo.svg" alt="Softwash Solutions Logo" />
+			{
+				variant === 'black' ? (
+					<img src="/svg/softwash-logo-black.svg" alt="Softwash Solutions Logo" />
+				) : (
+					<img src="/svg/softwash-logo.svg" alt="Softwash Solutions Logo" />
+				)
+			}
 		</a>
-		<Navigation />
+		<Navigation variant={variant} />
 		<Dropdown />
-		<div class="container"><Button to="/contact/" text="Contact us" variant="white" /></div>
+		<div class="container">
+			<Button to="/contact/" text="Contact us" variant={variant === 'black' ? 'green' : 'white'} />
+		</div>
 	</div>
 </header>
 

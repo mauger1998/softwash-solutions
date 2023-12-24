@@ -1,4 +1,9 @@
-<nav>
+---
+const { variant } = Astro.props
+console.log(variant)
+---
+
+<nav class={variant}>
 	<ul>
 		<a href="/">
 			<li>Home</li>
@@ -20,6 +25,7 @@
 		padding: 0.5rem;
 		border: 0.5px solid $white;
 		border-radius: 0.25rem;
+
 		ul {
 			display: flex;
 			align-items: center;
@@ -28,6 +34,15 @@
 			a {
 				li {
 					color: $white;
+				}
+			}
+		}
+		&.black {
+			ul {
+				a {
+					li {
+						color: $black;
+					}
 				}
 			}
 		}
