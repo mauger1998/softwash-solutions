@@ -2,10 +2,13 @@
 import Layout from '../layouts/Layout.astro'
 import { getSanity } from '../lib/api'
 import ServicesList from '../components/ServicesList.astro'
+import Hero from '../components/Hero.astro'
 
 const returnedSections = await getSanity(`*[_type == 'servicesPage']`)
-const services = await getSanity(`*[_type == 'services'] | order(orderRank asc)`)
-
+const services = await getSanity(`*[_type == 'services']{
+	orderRank,
+	...,
+} | order(orderRank asc)`)
 const sections = returnedSections[0].sections
 ---
 
@@ -13,10 +16,14 @@ const sections = returnedSections[0].sections
 	{
 		sections.map((section, index) => {
 			let components = []
+			switch (section._type) {
+				case 'hero':
+					components.push(<Hero tagColor="white" image={section.image} title={section.title} />)
+					break
+			}
 			if (index === 0) {
 				components.push(<ServicesList services={services} />)
 			}
-
 			return components
 		})
 	}

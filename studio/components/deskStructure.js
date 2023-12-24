@@ -11,7 +11,9 @@ export const deskStructure = (S, context) =>
       S.listItem()
         .title('Services Page')
         .child(
-          S.document().schemaType('services').documentId('380d46fc-59da-41c9-9f66-1ad7ccd4d42a'),
+          S.document()
+            .schemaType('servicesPage')
+            .documentId('306708cc-ffdb-4f9a-be00-af9a0ff210a7'),
         ),
 
       S.divider(),
@@ -24,6 +26,6 @@ export const deskStructure = (S, context) =>
       }),
 
       ...S.documentTypeListItems().filter(
-        (listItem) => !['media.tag', 'home', 'servicesPage', 'services'].includes(listItem.getId()),
+        (listItem) => !['media.tag', 'home', 'services', 'servicesPage'].includes(listItem.getId()),
       ),
     ])
