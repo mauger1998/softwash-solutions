@@ -11,8 +11,6 @@ let allBgUrls = []
 topServices.forEach((service) => {
 	allBgUrls.push(`url(${urlForImage(service.image).format('webp').url()})`)
 })
-
-console.log(allBgUrls)
 ---
 
 <section class="top-services">
@@ -20,6 +18,10 @@ console.log(allBgUrls)
 		<div class="title">
 			<Tag variant="centered" color="black" />
 			<h2>Our Top Services</h2>
+			<p>
+				From commercial render cleaning to full roof restoration, our top services exemplify the
+				precision and care Soft Wash Solutions is known for.
+			</p>
 		</div>
 		<div class="services">
 			{
@@ -52,6 +54,13 @@ console.log(allBgUrls)
 				flex-direction: column;
 				align-items: center;
 				margin-block: 0 4rem;
+
+				p {
+					max-width: 60ch;
+					margin-block: 1.5rem 0;
+					text-align: center;
+					color: $black;
+				}
 			}
 			.services {
 				display: grid;

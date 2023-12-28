@@ -1,0 +1,16 @@
+---
+import BeforeAndAfter from '../components/sections/BeforeAndAfter.astro'
+import Layout from '../layouts/Layout.astro'
+import { getSanity } from '../lib/api'
+
+const query = `*[_type == 'beforeAndAfterPage']`
+const beforeAndAfters = await getSanity(query)
+
+const gallerySections = beforeAndAfters[0]
+
+console.log(beforeAndAfters)
+---
+
+<Layout variant="black">
+	<BeforeAndAfter title={gallerySections.title} items={gallerySections.beforeAndAfter} />
+</Layout>

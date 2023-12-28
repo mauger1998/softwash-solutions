@@ -16,7 +16,33 @@ const { title } = Astro.props
 	</div>
 </section>
 
-<style lang="scss">
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	const basicScrollTimeline = gsap.timeline({
+		scrollTrigger: {
+			trigger: '.basic-section .left .tag',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	})
+
+	basicScrollTimeline
+		.to('.basic-section .left .tag ', {
+			clipPath: 'polygon(0 0, 99.9999% 0, 99.9999% 100%, 0% 100%)',
+			stagger: 0.2,
+			ease: 'power1.inOut'
+		})
+		.to('.basic-section .right h2, .basic-section .right a ', {
+			clipPath: 'polygon(0 0.00001%, 100% 0.00001%, 100% 100%, 0% 100%)',
+			stagger: 0.2,
+			ease: 'power1.inOut'
+		})
+</script>
+
+<style is:global lang="scss">
 	.basic-section {
 		.wrapper {
 			display: flex;
@@ -25,6 +51,9 @@ const { title } = Astro.props
 
 			.left {
 				width: 50%;
+				.tag {
+					clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+				}
 			}
 			.right {
 				width: 50%;
@@ -32,6 +61,10 @@ const { title } = Astro.props
 				h2 {
 					max-width: 18ch;
 					margin-block: 0rem 1.5rem;
+					clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+				}
+				a {
+					clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 				}
 			}
 		}

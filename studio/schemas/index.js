@@ -1,6 +1,8 @@
+import beforeAndAfterPage from './documents/beforeAndAfterPage'
 import home from './documents/home'
 import services from './documents/services'
 import servicesPage from './documents/servicesPage'
+import beforeAndAfter from './objects/beforeAndAfter'
 import card from './objects/card'
 import customImage from './objects/customImage'
 import project from './objects/project'
@@ -20,6 +22,7 @@ export const schemaTypes = [
   project,
   testimonial,
   card,
+  beforeAndAfter,
   // Sections
   hero,
   ourWork,
@@ -31,4 +34,5 @@ export const schemaTypes = [
   home,
   servicesPage,
   services,
+  beforeAndAfterPage,
 ]

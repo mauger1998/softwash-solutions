@@ -21,11 +21,38 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 	</div>
 </main>
 
-<style lang="scss" define:vars={{ backgroundImageUrl }}>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+	const homeHeroTimeline = gsap.timeline()
+	homeHeroTimeline
+		.to('main', {
+			clipPath: 'polygon(0 0.00001%, 100% 0.00001%, 100% 100%, 0% 100%)',
+			ease: 'power1.inOut'
+		})
+		.to('main h1, main .title > p', {
+			clipPath: 'polygon(0 0.00001%, 100% 0.00001%, 100% 100%, 0% 100%)',
+			stagger: 0.2,
+			ease: 'power1.inOut'
+		})
+		.to(
+			'main .tag',
+			{
+				clipPath: 'polygon(0 0, 99.9999% 0, 99.9999% 100%, 0% 100%)',
+				stagger: 0.2,
+				ease: 'power1.inOut'
+			},
+			'-=0.4'
+		)
+</script>
+
+<style is:global lang="scss" define:vars={{ backgroundImageUrl }}>
 	main {
 		background-image: linear-gradient(#03030370, #03030370), var(--backgroundImageUrl);
 		background-size: cover;
 		background-position: center;
+		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 
 		.wrapper {
 			padding-block: 28rem 4rem;
@@ -34,14 +61,19 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				.tag {
+					clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+				}
 				h1 {
 					max-width: 24ch;
 					text-align: center;
+					clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 				}
-				p {
+				> p {
 					max-width: 60ch;
 					text-align: center;
 					margin-block: 1.5rem 0;
+					clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 				}
 			}
 		}
