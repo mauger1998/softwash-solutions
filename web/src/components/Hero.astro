@@ -10,7 +10,7 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 <main>
 	<div class="wrapper">
 		<div class="title">
-			<Tag variant="centered" color={tagColor} />
+			<Tag text="OPERATING SINCE 2000" variant="centered" color={tagColor} />
 			<h1>
 				{title.title}
 			</h1>
@@ -49,13 +49,13 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 
 <style is:global lang="scss" define:vars={{ backgroundImageUrl }}>
 	main {
-		background-image: linear-gradient(#03030370, #03030370), var(--backgroundImageUrl);
+		background-image: linear-gradient(#03030387, #03030387), var(--backgroundImageUrl);
 		background-size: cover;
 		background-position: center;
 		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 
 		.wrapper {
-			padding-block: 28rem 4rem;
+			padding-block: 28rem 2rem;
 
 			.title {
 				display: flex;
@@ -75,6 +75,10 @@ const backgroundImageUrl = `url(${urlForImage(image).format('webp').url()})`
 					margin-block: 1.5rem 0;
 					clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 				}
+			}
+
+			@media (max-width: 500px) {
+				padding-block: 24rem 2rem;
 			}
 		}
 	}

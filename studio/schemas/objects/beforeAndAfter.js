@@ -17,7 +17,7 @@ export default {
   preview: {
     select: {
       title: 'before.alt',
-      media: 'before.image',
+      media: 'before',
     },
     prepare({title, media}) {
       return {

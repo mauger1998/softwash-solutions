@@ -1,12 +1,14 @@
 ---
 import Button from '../Button.astro'
 import TestimonialsGrid from '../grids/TestimonialsGrid.astro'
+import Tag from '../type/Tag.astro'
 const { title, testimonials } = Astro.props
 ---
 
-<section class="testimonials-section">
+<section id="testimonials" class="testimonials-section">
 	<div class="wrapper">
 		<div class="title">
+			<Tag text="REVIEWS" variant="centered" color="black" />
 			<h2>{title.title}</h2>
 			<p>{title.text}</p>
 			<!-- <Button text="Contact Us" to="/services/#contact" variant="black" /> -->
@@ -46,7 +48,7 @@ const { title, testimonials } = Astro.props
 					text-align: center;
 				}
 
-				p {
+				& > p {
 					color: $black;
 					max-width: 50ch;
 					margin-block: 1.5rem 2rem;

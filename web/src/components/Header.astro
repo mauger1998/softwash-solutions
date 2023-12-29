@@ -10,21 +10,21 @@ const { variant } = Astro.props
 		<a href="/" class="logo">
 			{
 				variant === 'black' ? (
-					<img src="/svg/softwash-logo-black.svg" alt="Softwash Solutions Logo" />
+					<img src="/images/softwashlogo (1) 1.png" alt="Softwash Solutions Logo" />
 				) : (
-					<img src="/svg/softwash-logo.svg" alt="Softwash Solutions Logo" />
+					<img src="/images/softwashlogo (1) 1.png" alt="Softwash Solutions Logo" />
 				)
 			}
 		</a>
 		<Navigation variant={variant} />
-		<Dropdown />
+		<Dropdown variant={variant} />
 		<div class="container">
 			<Button to="/contact/" text="Contact us" variant={variant === 'black' ? 'green' : 'white'} />
 		</div>
 	</div>
 </header>
 
-<style lang="scss">
+<style is:global lang="scss">
 	header {
 		position: absolute;
 		z-index: 10;
@@ -41,7 +41,7 @@ const { variant } = Astro.props
 				width: 200px;
 
 				img {
-					width: 100px;
+					width: 150px;
 				}
 			}
 			.container {
@@ -49,6 +49,10 @@ const { variant } = Astro.props
 				display: flex;
 				align-items: center;
 				justify-content: flex-end;
+
+				a {
+					margin-inline-end: -0.75rem;
+				}
 			}
 		}
 

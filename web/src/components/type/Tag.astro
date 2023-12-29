@@ -1,18 +1,18 @@
 ---
-const { variant, color } = Astro.props
+const { variant, color, text } = Astro.props
 ---
 
 {
 	variant === 'centered' ? (
 		<div class={`tag ${color}`}>
 			<hr />
-			<p>OPERATING SINCE 2003</p>
+			<p style={{ textAlign: 'center' }}>{text}</p>
 			<hr />
 		</div>
 	) : (
 		<div class={`tag ${color}`}>
 			<hr />
-			<p>OPERATING SINCE 2003</p>
+			<p>{text}</p>
 		</div>
 	)
 }

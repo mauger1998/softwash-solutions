@@ -1,5 +1,5 @@
 ---
-const { text, to = '/contact/', variant, ...props } = Astro.props
+const { text, to = '/#contact', variant, ...props } = Astro.props
 ---
 
 <a href={to}>
@@ -7,7 +7,7 @@ const { text, to = '/contact/', variant, ...props } = Astro.props
 		{text}
 	</button>
 	{
-		variant === 'green' ? (
+		variant === 'green' || variant === 'white-full' ? (
 			<div class="button-icon green">
 				<img src="/svg/svg-arrow.svg" alt="Button Icon" />
 			</div>
@@ -62,15 +62,31 @@ const { text, to = '/contact/', variant, ...props } = Astro.props
 			line-height: 1.2;
 
 			&.white {
-				border: 0.5px solid $white;
+				border: 1px solid $white;
 				background-color: transparent;
 				color: $white;
 				transition:
 					background-color 0.3s ease-in-out,
 					color 0.3s ease-in-out;
 			}
+			&.white-full {
+				border: 1px solid $white;
+				background-color: $white;
+				color: $green;
+				transition:
+					background-color 0.3s ease-in-out,
+					color 0.3s ease-in-out;
+				&:hover {
+					border: 1px solid $white;
+					background-color: transparent;
+					color: $white;
+					transition:
+						background-color 0.3s ease-in-out,
+						color 0.3s ease-in-out;
+				}
+			}
 			&.green {
-				border: 0.5px solid $green;
+				border: 1px solid $green;
 				color: $green;
 				background-color: transparent;
 				transition:

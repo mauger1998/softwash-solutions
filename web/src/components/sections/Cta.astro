@@ -9,13 +9,31 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 <section class="cta-section">
 	<div class="wrapper">
 		<div class="title">
-			<Tag color="white" />
+			<Tag text="OUR PROMISE" color="white" />
 			<h2>{title}</h2>
 		</div>
 	</div>
 </section>
 
-<style lang="scss" define:vars={{ bgUrl }}>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.cta-section .tag, .cta-section .title h2', {
+		scrollTrigger: {
+			trigger: '.cta-section',
+			start: 'top center',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
+
+<style is:global lang="scss" define:vars={{ bgUrl }}>
 	.cta-section {
 		background-image: linear-gradient(#0303037c, #0303037c), var(--bgUrl);
 		background-size: cover;
@@ -29,6 +47,16 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				h2 {
 					color: $white;
 					max-width: 16ch;
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+				.tag {
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+
+				@media (max-width: 700px) {
+					margin-inline-start: 0;
 				}
 			}
 		}

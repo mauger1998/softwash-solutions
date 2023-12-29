@@ -2,10 +2,8 @@
 import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
 import { getSanity } from '../lib/api'
-import OurWork from '../components/sections/OurWork.astro'
 import Testimonials from '../components/sections/Testimonials.astro'
 import Cta from '../components/sections/Cta.astro'
-import ServicesList from '../components/ServicesList.astro'
 import ThreeIconCards from '../components/sections/ThreeIconCards.astro'
 import ContactSection from '../components/sections/ContactSection.astro'
 import Basic from '../components/sections/Basic.astro'
@@ -33,9 +31,6 @@ const services = returnedServices
 				case 'basic':
 					components.push(<Basic title={section.title} />)
 					break
-				// case 'ourWork':
-				// 	components.push(<OurWork title={section.title} projects={section.projects} />)
-				// 	break
 				case 'testimonials':
 					components.push(
 						<Testimonials title={section.title} testimonials={section.testimonials} />

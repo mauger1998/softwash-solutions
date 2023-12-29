@@ -1,5 +1,15 @@
+---
+const { variant } = Astro.props
+---
+
 <div class="dropdown" data-dropdown>
-	<img data-dropdown-button src="/svg/menu-alt-svgrepo-com.svg" alt="Open Dropdown" />
+	{
+		variant === 'black' ? (
+			<img data-dropdown-button src="/svg/meni-black.svg" alt="Open Dropdown" />
+		) : (
+			<img data-dropdown-button src="/svg/menu-alt-svgrepo-com.svg" alt="Open Dropdown" />
+		)
+	}
 	<div class="dropdown-menu">
 		<img src="/svg/close-svgrepo-com.svg" alt="Close Dropdown" />
 		<nav>
@@ -40,7 +50,6 @@
 <style lang="scss">
 	.dropdown {
 		display: none;
-
 		img {
 			width: 2rem;
 			cursor: pointer;

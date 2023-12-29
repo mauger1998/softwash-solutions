@@ -6,7 +6,7 @@ import Button from './Button.astro'
 	<div class="wrapper">
 		<div class="footer-top">
 			<h3>Contact us for a complimentary quote</h3>
-			<Button text="Contact Us" to="/services/#contact" variant="white" />
+			<Button text="Contact Us" to="/#contact" variant="white" />
 		</div>
 		<div class="footer-bottom">
 			<div class="column">
@@ -16,61 +16,46 @@ import Button from './Button.astro'
 					prepared to take the next step. Your property's brilliance is just a click away.
 				</p>
 			</div>
-			<div class="column">
-				<nav>
-					<ul>
-						<a href="/">
-							<li>Home</li>
-						</a>
-						<a href="/services/">
-							<li>Services</li>
-						</a>
-						<a href="/gallery/">
-							<li>Gallery</li>
-						</a>
-
-						<a href="/#contact">
-							<li>Contact</li>
-						</a>
-					</ul>
-				</nav>
-			</div>
-			<div class="column">
-				<nav>
-					<ul>
-						<a href="/">
-							<li>Home</li>
-						</a>
-						<a href="/services/">
-							<li>Services</li>
-						</a>
-						<a href="/gallery/">
-							<li>Gallery</li>
-						</a>
-
-						<a href="/#contact">
-							<li>Contact</li>
-						</a>
-					</ul>
-				</nav>
-			</div>
-			<div class="column">
-				<nav>
-					<ul>
-						<a href="/">
-							<li>Home</li>
-						</a>
-						<a href="/services/">
-							<li>Services</li>
-						</a>
-						<a href="/gallery/">
-							<li>Gallery</li>
-						</a>
-						<a href="/#contact">
-							<li>Contact</li>
-						</a>
-					</ul>
-				</nav>
+			<div class="wrap">
+				<div class="column">
+					<nav>
+						<ul>
+							<a href="/">
+								<li>Home</li>
+							</a>
+							<a href="/services/">
+								<li>Services</li>
+							</a>
+							<a href="/gallery/">
+								<li>Gallery</li>
+							</a>
+							<a href="/#contact">
+								<li>Contact us</li>
+							</a>
+						</ul>
+					</nav>
+				</div>
+				<div class="column">
+					<nav>
+						<ul>
+							<a href="/#why-us">
+								<li>Why us?</li>
+							</a>
+							<a href="/#top-services">
+								<li>Top services</li>
+							</a>
+							<a href="/#testimonials">
+								<li>Testimonials</li>
+							</a>
+							<a href="/services/">
+								<li>All services</li>
+							</a>
+							<a href="/gallery/">
+								<li>Before and after</li>
+							</a>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -93,11 +78,29 @@ import Button from './Button.astro'
 			}
 			.footer-bottom {
 				display: grid;
-				grid-template-columns: 2fr 1fr 1fr 1fr;
+				grid-template-columns: 2fr 2fr;
 				padding-block-start: 4rem;
 				gap: 4rem;
 				align-items: end;
 				border-top: 0.5px solid $white;
+
+				.wrap {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 2rem;
+					width: 100%;
+					.column {
+						nav {
+							width: 100%;
+
+							ul {
+								flex-direction: row;
+								flex-wrap: wrap;
+							}
+						}
+					}
+				}
 
 				.column {
 					h4 {
@@ -127,14 +130,7 @@ import Button from './Button.astro'
 		@media (max-width: 900px) {
 			.wrapper {
 				.footer-bottom {
-					grid-template-columns: 1fr 1fr 1fr;
-					.column {
-						&:first-child {
-							grid-column: span 3;
-						}
-						&:not(:first-child) {
-						}
-					}
+					grid-template-columns: 1fr;
 				}
 			}
 		}

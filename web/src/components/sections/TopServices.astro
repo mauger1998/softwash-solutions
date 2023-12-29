@@ -13,10 +13,10 @@ topServices.forEach((service) => {
 })
 ---
 
-<section class="top-services">
+<section id="top-services" class="top-services">
 	<div class="wrapper">
 		<div class="title">
-			<Tag variant="centered" color="black" />
+			<Tag text="SERVICES" variant="centered" color="black" />
 			<h2>Our Top Services</h2>
 			<p>
 				From commercial render cleaning to full roof restoration, our top services exemplify the
@@ -36,7 +36,7 @@ topServices.forEach((service) => {
 							/>
 							<div class="title">
 								<h4>{service.title}</h4>
-								<Button text="View all services" variant="white" />
+								<Button text="View all services" variant="white-full" />
 							</div>
 						</div>
 					</div>
@@ -45,21 +45,64 @@ topServices.forEach((service) => {
 		</div>
 	</div>
 </section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
 
-<style lang="scss">
+	gsap.to('.top-services .mask', {
+		scrollTrigger: {
+			trigger: '.top-services .mask',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		x: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+
+	gsap.to('.top-services .title h2, .top-services .title > p, .top-services .title .tag', {
+		scrollTrigger: {
+			trigger: '.three-icon-cards-section .title h2',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	})
+</script>
+
+<style is:global lang="scss">
 	.top-services {
 		.wrapper {
+			@media (max-width: 700px) {
+				padding-block-end: 0;
+			}
 			.title {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				margin-block: 0 4rem;
 
-				p {
-					max-width: 60ch;
+				h2 {
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+				.tag {
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+
+				& > p {
+					max-width: 40ch;
 					margin-block: 1.5rem 0;
 					text-align: center;
 					color: $black;
+					transform: translateY(2rem);
+					opacity: 0;
 				}
 			}
 			.services {
@@ -68,9 +111,15 @@ topServices.forEach((service) => {
 				gap: 2rem;
 				.mask {
 					overflow: hidden;
+					transform: translateX(-4rem);
+					opacity: 0;
 
 					.card {
 						padding: 18rem 2rem 2rem 2rem;
+
+						@media (max-width: 700px) {
+							padding-inline: 1.5rem;
+						}
 						display: flex;
 						align-items: flex-end;
 						position: relative;
@@ -104,6 +153,7 @@ topServices.forEach((service) => {
 							h4 {
 								color: $white;
 								max-width: 12ch;
+								font-size: $h4;
 							}
 							p {
 								color: $white;
